@@ -1,12 +1,13 @@
 {
-  "name": "web",
+  "name": "@fly-monorepo-demo/web",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "web": "npm run dev"
   },
   "dependencies": {
     "@repo/ui": "*",

@@ -1,0 +1,9 @@
+{
+  "extends": "@fly-monorepo-demo/typescript-config/base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["dist"]
+}
