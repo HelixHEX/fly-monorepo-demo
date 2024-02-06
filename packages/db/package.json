@@ -8,5 +8,14 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.9.1",
+    "dotenv-safe": "^8.2.0"
+  },
+  "devDependencies": {
+    "@fly-monorepo-demo/typescript-config": "^0.0.0",
+    "prisma": "^5.9.1",
+    "typescript": "^5.3.3"
+  }
 }

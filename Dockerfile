@@ -36,6 +36,7 @@ RUN npm install --production=false
 COPY --from=pruner /app/out/full/ .
 
 RUN turbo run db-generate
+
 RUN turbo run build --scope=${PROJECT}
 RUN npm install --production
 RUN rm -rf ./**/*/src
