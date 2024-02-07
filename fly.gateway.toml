@@ -3,11 +3,11 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "monorepo-demo-docs"
+app = "monorepo-demo-gateway"
 primary_region = "lax"
 
 [build.args]
-  PROJECT="@fly-monorepo-demo/web"
+  PROJECT="api-gateway"
   
 # api_gateway
 [http_service]

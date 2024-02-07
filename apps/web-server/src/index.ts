@@ -14,15 +14,21 @@ app.use(
   )
 );
 
-app.use('/error', (_req, res) => {
-  return res.status(500).json({error: "Internal Server Error"})
+app.get("/error", (_req, res) => {
+  return res.status(500).json({ error: "Internal Server Error" });
 });
 
-app.use('/:path', (req: Request, res: Response) => {
-  const {path} = req.params
-  return res.json({path})
-})
+app.get("/:path", (req: Request, res: Response) => {
+  const { path } = req.params;
+  return res.json({ path });
+});
+
+app.post("/:path", (req: Request, res: Response) => {
+  const { path } = req.params;
+  const { body } = req.body;
+  return res.json({ path, body });
+});
 
 app.listen(process.env.PORT, () => {
-  console.log(`🚀 API Gateway is running on port ${port}`);
+  console.log(`🚀 Web Server is running on port ${port}`);
 });

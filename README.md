@@ -1,8 +1,8 @@
-# Turborepo starter
+# Fly.io Simple Monorepo Demo
 
-This is an official starter Turborepo.
+This is a simple monorepo demo to showcase how to deploy multiple apps to fly.io using one Dockerfile.
 
-## Using this example
+## Create .env
 
 Run the following command:
 

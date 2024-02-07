@@ -1,19 +1,19 @@
 [[services]]
 name = "web api"
-prefix = "/web"
+prefix = "/web-server"
 [[services.environments]]
 environment = "development"
 url = "http://localhost:5001"
 [[services.environments]]
 environment = "production"
-url = "https://fly-monorepo-web.fly.io"
+url = "https://monorepo-demo-web.fly.dev"
 
 [[services]]
-name = "hello world client"
-prefix = "/hello-world"
+name = "Yoda Translater"
+prefix = "/yoda"
 [[services.environments]]
 environment = "development"
-url = "http://localhost:3000"
+url = "https://api.funtranslations.com"
 [[services.environments]]
 environment = "production"
-url = "https://fly-monorepo-helloworld.fly.io"
+url = "https://api.funtranslations.com"

@@ -11,12 +11,11 @@ const environment = process.env.NODE_ENV || "development";
 
 let config: any;
 let services: any;
-
+// console.log(services)
 try {
   config = toml.parse(
     fs.readFileSync(path.join(__dirname, "../config.toml"), "utf-8")
   );
-  console.log(config)
   services = config.services.map((service: any) => {
     return {
       ...service,
@@ -25,7 +24,6 @@ try {
       ),
     };
   });
-  console.log(services[0])
 } catch (e) {
   console.log(e);
   config = null;
@@ -42,6 +40,10 @@ const main = () => {
   );
 
   try {
+    app.use(
+      "/useless-fact",
+      proxy("https://api.bettrdash.com/web/auth/current-session")
+    );
     services.forEach((service: any) => {
       if (!service.environments) {
         throw new Error(
@@ -54,7 +56,7 @@ const main = () => {
         throw new Error(
           `Unable to find environments for ${service.name} serivice`
         );
-      const url = env.url;
+      let url = env.url;
       if (!url) throw new Error('"url" param not found');
       app.use(service.prefix, proxy(url));
     });

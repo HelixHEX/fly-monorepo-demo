@@ -7,7 +7,7 @@ app = "monorepo-demo-web"
 primary_region = "lax"
 
 [build.args]
-  PROJECT="@fly-monorepo-demo/web"
+  PROJECT="web-server"
   
 # api_gateway
 [http_service]
