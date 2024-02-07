@@ -1,4 +1,6 @@
-# fly.toml app configuration file generated for bettrdash-api-gateway"
+# fly.web.toml
+
+# fly.toml app configuration file generated for monorepo-demo-web"
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -15,3 +17,4 @@ primary_region = "lax"
   force_https = true
   min_machines_running = 0
   processes = ["app"]
+

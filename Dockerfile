@@ -35,9 +35,11 @@ RUN npm install --production=false
 # Copy source code of isolated subworkspace
 COPY --from=pruner /app/out/full/ .
 
-RUN turbo run db-generate
+#TODO: Uncomment the following line if you plan to use prisma
+#RUN turbo run db-generate
 
 RUN turbo run build --scope=${PROJECT}
+
 RUN npm install --production
 RUN rm -rf ./**/*/src
 

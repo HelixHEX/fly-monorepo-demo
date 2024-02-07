@@ -2,27 +2,23 @@
 
 This is a simple monorepo demo to showcase how to deploy multiple apps to fly.io using one Dockerfile.
 
-## Create .env
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
 ## What's inside?
 
-This Turborepo includes the following packages/apps:
+In the monorepo you'll find 2 apps and 4 packages
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+#### Apps
+- [`api-gateway`](/apps/api-gateway/): an [express.js](https://expressjs.com/) server that proxies 2 enpoints.   
+   
+   **Endpoints**
+    - [/web-server](/apps/web-server/)
+    - [/yoda]("https://funtranslations.com/api/yoda")
+
+- [`web-server`](apps/web-server/): another [express.js](https://expressjs.com/) app that just returns the current path that a user enters
+
+Each app/package is 100% [TypeScript](https://www.typescriptlang.org/).
 
 ### Utilities
 
@@ -32,50 +28,61 @@ This Turborepo has some additional tools already setup for you:
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
+
+### Setup
+
+Install Dependencies
+
+```sh
+npm install
+```
+
+### Run
+
+```sh
+npm run dev
+```
+
 ### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```sh
+npm run build
 ```
 
-### Develop
+### Deploy
 
-To develop all apps and packages, run the following command:
+1. Install and setup [flyctl]()
 
-```
-cd my-turborepo
-pnpm dev
-```
+2. Create apps first before deploying
 
-### Remote Caching
+```console
+$ fly apps create api-gateway
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+$ fly apps create web-server
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+3. Check that the app variable name in the `fly.[app-name].toml` file is the same name you used to create the app in the previous step
 
 ```
-npx turbo link
+# fly.gateway.toml
+app = "monorepo-demo-web" <- this line
+primary_region = "lax"
+...
 ```
 
-## Useful Links
+4. Also check that the `PROJECT` arg in the `fly.[app-name].toml` file (located in the `[build.args]` section) is the same name as your app folder. 
 
-Learn more about the power of Turborepo:
+```
+#fly.gateway.toml
+...
+[build.args]
+  PROJECT="api-gateway" # This should match the app name folder
+...
+```
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+![App Name Screenshot](https://github.com/HelixHex/fly-monorepo-demo/app_name_screenshot.png)
+
+5. Deploy to [fly.io](https://fly.io)
+```console
+$ fly deploy --config fly.gateway.toml
+$ fly deploy --config fly.web.toml
+```
