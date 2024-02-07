@@ -21,7 +21,7 @@ An express app that just returns whatever path you enter
 
 > | http code | content-type     | response          |
 > | --------- | ---------------- | ----------------- |
-> | 200       | application/json | {"path": ":path"} |
+> | 200       | application/json | {"path": `path`} |
 
 </details>
 
