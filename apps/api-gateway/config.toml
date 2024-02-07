@@ -1,0 +1,19 @@
+[[services]]
+name = "web api"
+prefix = "/web"
+[[services.environments]]
+environment = "development"
+url = "http://localhost:5001"
+[[services.environments]]
+environment = "production"
+url = "https://fly-monorepo-web.fly.io"
+
+[[services]]
+name = "hello world client"
+prefix = "/hello-world"
+[[services.environments]]
+environment = "development"
+url = "http://localhost:3000"
+[[services.environments]]
+environment = "production"
+url = "https://fly-monorepo-helloworld.fly.io"

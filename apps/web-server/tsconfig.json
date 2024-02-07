@@ -1,0 +1,9 @@
+{
+  "extends": "@fly-monorepo-demo/typescript-config/server.json",
+  "include": ["./src/**/*.tsx", "./src/**/*.ts",  "env.d.ts" ],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "types": ["node"],
+    "typeRoots": ["../../node_modules/@types"]
+  }
+}
