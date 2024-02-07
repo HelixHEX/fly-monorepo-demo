@@ -56,9 +56,15 @@ const main = () => {
         throw new Error(
           `Unable to find environments for ${service.name} serivice`
         );
-      let url = env.url;
+      let url = new URL(env.url);
+      console.log(new URL(url))
       if (!url) throw new Error('"url" param not found');
-      app.use(service.prefix, proxy(url));
+      app.use(service.prefix, proxy(url.origin, {
+        proxyReqPathResolver: (req) => {
+          const queryString = req.url.split('?')[1];
+          return url.origin + url.pathname + `?${queryString}`
+        }
+      }));
     });
   } catch (e) {
     console.log(e);

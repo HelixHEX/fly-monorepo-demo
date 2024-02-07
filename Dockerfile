@@ -36,7 +36,7 @@ RUN npm install --production=false
 COPY --from=pruner /app/out/full/ .
 
 #TODO: Uncomment the following line if you plan to use prisma
-#RUN turbo run db-generate
+#RUN turbo run db:generate
 
 RUN turbo run build --scope=${PROJECT}
 

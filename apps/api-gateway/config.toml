@@ -9,11 +9,11 @@ environment = "production"
 url = "https://monorepo-demo-web.fly.dev"
 
 [[services]]
-name = "Yoda Translater"
+name = "Translator"
 prefix = "/yoda"
 [[services.environments]]
 environment = "development"
-url = "https://api.funtranslations.com"
+url = "https://api.funtranslations.com/translate/yoda"
 [[services.environments]]
 environment = "production"
-url = "https://api.funtranslations.com"
+url = "https://api.funtranslations.com/translate/yoda"

@@ -15,7 +15,9 @@ app.use(
 );
 
 app.get("/error", (_req, res) => {
-  return res.status(500).json({ error: "Internal Server Error" });
+  return res
+    .status(500)
+    .json({ code: "500", message: "Internal Server Error" });
 });
 
 app.get("/:path", (req: Request, res: Response) => {
