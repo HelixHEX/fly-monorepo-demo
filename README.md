@@ -82,3 +82,10 @@ $ fly deploy --config fly.gateway.toml
 
 $ fly deploy --config fly.web.toml
 ```
+
+You also use the included [`deploy.sh`](/deploy.sh) to deploy all apps at once
+```console
+$ chmod +x deploy.sh
+
+$ ./deploy.sh
+```
